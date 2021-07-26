@@ -1,0 +1,18 @@
+<?php
+$ host ="localhost";
+$user="postgres";
+$pass="root";
+$db="banao-atg";
+$con=pg_connect("host=$host dbname=$db user=$user EnterEmail=$email password=$pass") or die("could not connect to server\n");
+if(!$con){
+echo "Error : unable to open database\n";
+} else{
+   $name=$_POST['username'];
+   $email=$_POST['EnterEmail'];
+   $password=$_POST['password'];
+ $query="INSERT INTO register (name,email,password) VALUES ('$name','$email','$password')";
+$result=pg_query($con,$query);
+header("Location: mylogin.html");
+}
+pg_close($con);
+?>
